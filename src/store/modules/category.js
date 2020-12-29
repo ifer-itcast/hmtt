@@ -1,3 +1,4 @@
+import axios from 'axios'
 export default {
   namespaced: true,
   state: {
@@ -14,5 +15,11 @@ export default {
       state.currentCategoryId = payload
     }
   },
-  actions: {}
+  actions: {
+    async getCategories (context) {
+      const { data: { data: { channels } } } = await axios.get('http://ttapi.research.itcast.cn/app/v1_0/channels')
+      context.commit('updateCategories', channels)
+      context.commit('updateCurrentCategoryId', channels[0].id)
+    }
+  }
 }

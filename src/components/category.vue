@@ -1,6 +1,13 @@
 <template>
   <ul class="catagtory">
-    <li :class="{select: currentCategoryId === item.id}" v-for="item in categories" :key="item.id">{{item.name}}</li>
+    <li
+      v-for="item in categories"
+      @click="$store.commit('category/updateCurrentCategoryId', item.id)"
+      :class="{ select: currentCategoryId === item.id }"
+      :key="item.id"
+    >
+      {{ item.name }}
+    </li>
   </ul>
 </template>
 
@@ -11,7 +18,9 @@ export default {
   computed: {
     ...mapGetters(['categories', 'currentCategoryId'])
   },
-  methods: {}
+  created() {
+    this.$store.dispatch('category/getCategories')
+  }
 }
 </script>
 
