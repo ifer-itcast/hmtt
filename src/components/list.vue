@@ -16,9 +16,17 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
   name: 'List',
-  methods: {}
+  computed: {
+    ...mapGetters(['currentCategoryId'])
+  },
+  watch: {
+    currentCategoryId(newValue) {
+      this.$store.dispatch('list/getList', newValue)
+    }
+  }
 }
 </script>
 
