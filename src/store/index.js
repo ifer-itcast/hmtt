@@ -6,14 +6,16 @@ import list from './modules/list'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
+  state: {},
+  mutations: {},
+  actions: {},
   modules: {
     category,
     list
+  },
+  getters: {
+    // 建立对于子模块的快捷访问
+    category: state => state.category.categories,
+    currentCategoryId: state => state.category.currentCategoryId
   }
 })
