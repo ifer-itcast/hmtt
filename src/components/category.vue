@@ -20,11 +20,13 @@ export default {
   },
   async created() {
     await this.$store.dispatch('category/getCategories')
+    // !#1 获取初始数据
     await this.$store.dispatch('list/getList', this.currentCategoryId)
   },
   methods: {
     handleClick(item) {
       this.$store.commit('category/updateCurrentCategoryId', item.id)
+      // !#2 点击的时候根据当前 ID 获取最新数据
       this.$store.dispatch('list/getList', item.id)
     }
   }
