@@ -26,12 +26,12 @@ export default {
   name: 'List',
   computed: {
     ...mapGetters(['currentCategoryId', 'currentList'])
-  },
-  watch: {
+  }
+  /* watch: {
     currentCategoryId(newValue) {
       this.$store.dispatch('list/getList', newValue)
     }
-  }
+  } */
 }
 </script>
 

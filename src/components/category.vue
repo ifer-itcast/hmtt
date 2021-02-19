@@ -2,7 +2,7 @@
   <ul class="catagtory">
     <li
       v-for="item in categories"
-      @click="$store.commit('category/updateCurrentCategoryId', item.id)"
+      @click="handleClick(item)"
       :class="{ select: currentCategoryId === item.id }"
       :key="item.id"
     >
@@ -18,8 +18,15 @@ export default {
   computed: {
     ...mapGetters(['categories', 'currentCategoryId'])
   },
-  created() {
-    this.$store.dispatch('category/getCategories')
+  async created() {
+    await this.$store.dispatch('category/getCategories')
+    await this.$store.dispatch('list/getList', this.currentCategoryId)
+  },
+  methods: {
+    handleClick(item) {
+      this.$store.commit('category/updateCurrentCategoryId', item.id)
+      this.$store.dispatch('list/getList', item.id)
+    }
   }
 }
 </script>
