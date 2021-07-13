@@ -16,9 +16,11 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Category',
   computed: {
+    // !#6
     ...mapGetters(['categories', 'currentCategoryId'])
   },
   created() {
+    // !#1
     this.$store.dispatch('category/getCategories')
   }
 }

@@ -14,6 +14,7 @@ export default new Vuex.Store({
     list
   },
   getters: {
+    // !#5
     // 建立对于子模块的快捷访问
     categories: state => state.category.categories,
     currentCategoryId: state => state.category.currentCategoryId
